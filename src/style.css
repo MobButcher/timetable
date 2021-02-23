@@ -1,0 +1,118 @@
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.external-containter {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+}
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin: auto; */
+}
+
+.timetable {
+  /* General variables */
+  --weekdays: 5;
+  --lessons: 3;
+
+  /* Official Discord theme colors */
+  --discord-blurple: #7289DA;
+  --discord-full-white: #FFFFFF;
+  --discord-greyple: #99AAB5;
+  --discord-dark-but-not-black: #2C2F33;
+  --discord-not-quite-black: #23272A;
+  --discord-actually-black: #000000;
+
+  /* Discord-based theme colors */
+  --discord-blurple-analogous-1: #936CE6;
+  --discord-blurple-analogous-2: #7771F0;
+  --discord-blurple-analogous-3: #71AEF0;
+  --discord-blurple-analogous-4: #6CC6E6;
+  --discord-blurple-square-1: #5B76D9;
+  --discord-blurple-square-2: #D9869B;
+  --discord-blurple-square-3: #D9B85B;
+  --discord-blurple-square-4: #66D976;
+
+  /* Themeable objects */
+  --font-cell-color: var(--discord-full-white);
+  --font-empty-color: var(--discord-full-white);
+  --font-accent-color: var(--discord-full-white);
+  --font-header-color: var(--discord-full-white);
+  --font-table-header-color: var(--discord-greyple);
+  --background-cell-color: var(--discord-dark-but-not-black);
+  --background-empty-color: var(--discord-blurple);
+  --background-accent-color: var(--discord-blurple-analogous-2);
+  --background-header-color: var(--discord-blurple);
+  --background-table-header-color: var(--discord-not-quite-black);
+
+  /* Themed property defaults */
+  --font-color: var(--font-cell-color);
+  --background-color: var(--background-cell-color);
+  --border-timetable-color: var(--discord-actually-black);
+  --border-title-color: var(--discord-actually-black);
+  --border-subgroup-color: var(--discord-greyple);
+
+  display: grid;
+  grid-template-rows: [start] 1.5em 3em repeat(var(--lessons), 15vh) [end];
+  grid-template-columns: [start] 11ch repeat(var(--weekdays), 16vw) [end];
+  border: solid 3px var(--border-timetable-color);
+}
+.width-spanning {
+  grid-column: start/end;
+}
+.title {
+  font-weight: bold;
+}
+.accent {
+  --font-color: var(--font-accent-color);
+  --background-color: var(--background-accent-color);
+}
+.table-header, .table-sider, .title {
+  --font-color: var(--font-table-header-color);
+  --background-color: var(--background-table-header-color);
+}
+.header {
+  --font-color: var(--font-header-color);
+  --background-color: var(--background-header-color);
+}
+.quartiled {
+  display: grid;
+  grid-template-columns: [start] 1fr 1fr [end];
+  grid-template-rows: [start] 1fr 1fr [end];
+}
+.table-header .width-spanning.cell {
+  border-bottom: solid 1px var(--border-subgroup-color);
+}
+.subgroup-left {
+  border-right: solid 1px var(--border-subgroup-color);
+}
+.subgroup-left, .subgroup-right {
+  border-bottom: solid 1px var(--border-timetable-color);
+}
+.title.width-spanning {
+  border-bottom: solid 2px var(--border-title-color);
+}
+.title:not(.width-spanning) {
+  border-right: solid 2px var(--border-title-color);
+  border-bottom: solid 1px var(--border-timetable-color);
+}
+.table-sider {
+  border-right: solid 2px var(--border-timetable-color);
+  border-top: solid 1px var(--border-timetable-color);
+}
+.table-header:nth-of-type(3) ~ .table-header {
+  border-left: solid 1px var(--border-timetable-color);
+}
+.cell {
+  color: var(--font-color);
+  background-color: var(--background-color);
+}
+.cell:empty {
+  --font-color: var(--font-empty-color);
+  --background-color: var(--background-empty-color);
+}

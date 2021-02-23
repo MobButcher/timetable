@@ -1,2 +1,6 @@
-server.bat
+.*
 *.sublime*
+*.code-workspace
+node_modules
+server.bat
+dist
